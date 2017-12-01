@@ -1,5 +1,7 @@
 package us.ihmc.footstepPlanning.graphSearch;
 
+import us.ihmc.footstepPlanning.FootstepPlan;
+import us.ihmc.footstepPlanning.FootstepPlanningResult;
 import us.ihmc.footstepPlanning.graphSearch.graph.FootstepNode;
 import us.ihmc.footstepPlanning.polygonWiggling.PolygonWiggler;
 
@@ -287,6 +289,27 @@ public interface FootstepPlannerParameters
    }
 
    /**
+    * When the planner is done planning and cannot find a path to the goal, this flag indicates whether the
+    * planner should return the best plan that it found. If this value is false, the planner will return
+    * a {@link FootstepPlan} of type {@link FootstepPlanningResult#NO_PATH_EXISTS}. Otherwise it will return
+    * the "best" effort plan, where the plan is at least {@link #getMinimumStepsForBestEffortPlan()} steps long
+    * "best" is determined by the planner.
+    */
+   public default boolean getReturnBestEffortPlan()
+   {
+      return false;
+   }
+
+   /**
+    * When {@link #getReturnBestEffortPlan()} is true, the planner will return the best effort plan if the plan
+    * contains at least this many footsteps.
+    */
+   public default int getMinimumStepsForBestEffortPlan()
+   {
+      return 0;
+   }
+
+   /**
     * When using a cost based planning approach this value defined how the yaw of a footstep will be
     * weighted in comparison to its position.
     */
@@ -313,5 +336,25 @@ public interface FootstepPlannerParameters
    public default double getBodyGroundClearance()
    {
       return 0.25;
+   }
+
+   /**
+    * Parameter used inside the node expansion to avoid footsteps that would be on top of the stance foot.
+    * Nodes are only added to the expanded list if they are outside the box around the stance foot defined by
+    * this parameter.
+    */
+   public default double getMinXClearanceFromStance()
+   {
+      return 0.0;
+   }
+
+   /**
+    * Parameter used inside the node expansion to avoid footsteps that would be on top of the stance foot.
+    * Nodes are only added to the expanded list if they are outside the box around the stance foot defined by
+    * this parameter.
+    */
+   public default double getMinYClearanceFromStance()
+   {
+      return 0.0;
    }
 }

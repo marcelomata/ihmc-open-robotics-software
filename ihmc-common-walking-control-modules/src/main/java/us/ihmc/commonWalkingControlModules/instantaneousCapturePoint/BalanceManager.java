@@ -62,7 +62,7 @@ public class BalanceManager
    private final BipedSupportPolygons bipedSupportPolygons;
    private final ICPPlannerWithAngularMomentumOffsetInterface icpPlanner;
    private final PrecomputedICPPlanner precomputedICPPlanner;
-   private final LinearMomentumRateOfChangeControlModule linearMomentumRateOfChangeControlModule;
+   private final LeggedLinearMomentumRateOfChangeControlModule linearMomentumRateOfChangeControlModule;
    private final DynamicReachabilityCalculator dynamicReachabilityCalculator;
 
    private final PelvisICPBasedTranslationManager pelvisICPBasedTranslationManager;
@@ -341,6 +341,11 @@ public class BalanceManager
    public double getNextTransferDurationAdjustedForReachability()
    {
       return icpPlanner.getTransferDuration(1);
+   }
+   
+   public double getCurrentTouchdownDuration()
+   {
+      return icpPlanner.getTouchdownDuration(0);
    }
 
 
@@ -647,6 +652,11 @@ public class BalanceManager
       yoDesiredCapturePoint.getFrameTuple2dIncludingFrame(desiredCapturePoint2d);
       icpErrorToPack.setIncludingFrame(desiredCapturePoint2d);
       icpErrorToPack.sub(capturePoint2d);
+   }
+   
+   public boolean isPrecomputedICPPlannerActive()
+   {
+      return precomputedICPPlanner.isWithinInterval(yoTime.getDoubleValue());
    }
 
    public boolean isICPPlanDone()
