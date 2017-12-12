@@ -141,7 +141,7 @@ public class YoFrameOrientation implements ReferenceFrameHolder, Clearable
    public void set(YoFrameQuaternion orientation)
    {
       orientation.checkReferenceFrameMatch(getReferenceFrame());
-      orientation.getFrameOrientationIncludingFrame(tempFrameOrientation);
+      tempFrameOrientation.get(orientation);
       set(tempFrameOrientation);
    }
 
@@ -167,7 +167,7 @@ public class YoFrameOrientation implements ReferenceFrameHolder, Clearable
 
    public void setAndMatchFrame(YoFrameQuaternion yoFrameQuaternion, boolean notifyListeners)
    {
-      yoFrameQuaternion.getFrameOrientationIncludingFrame(tempFrameOrientation);
+      tempFrameOrientation.get(yoFrameQuaternion);
       tempFrameOrientation.changeFrame(getReferenceFrame());
       tempFrameOrientation.getYawPitchRoll(tempYawPitchRoll);
       yaw.set(tempYawPitchRoll[0], notifyListeners);

@@ -54,7 +54,7 @@ public class YoFramePoseUsingQuaternions implements ReferenceFrameHolder, Settab
    public void getFramePose(FramePose framePoseToPack)
    {
       position.getFrameTupleIncludingFrame(tempFramePoint);
-      orientation.getFrameOrientationIncludingFrame(tempFrameOrientation);
+      orientation.get(tempFrameOrientation);
 
       framePoseToPack.setPosition(tempFramePoint);
       framePoseToPack.setOrientation(tempFrameOrientation);
@@ -69,7 +69,7 @@ public class YoFramePoseUsingQuaternions implements ReferenceFrameHolder, Settab
    public void getPose(RigidBodyTransform rigidBodyTransformToPack)
    {
       position.getFrameTupleIncludingFrame(tempFramePoint);
-      orientation.getFrameOrientationIncludingFrame(tempFrameOrientation);
+      orientation.get(tempFrameOrientation);
       rigidBodyTransformToPack.setRotation(tempFrameOrientation);
       rigidBodyTransformToPack.setTranslation(tempFramePoint.getX(), tempFramePoint.getY(), tempFramePoint.getZ());
    }
@@ -183,7 +183,7 @@ public class YoFramePoseUsingQuaternions implements ReferenceFrameHolder, Settab
    {
       boolean notifyListeners = true;
       position.setAndMatchFrame(framePoint, notifyListeners);
-      orientation.setAndMatchFrame(frameOrientation, notifyListeners);
+      orientation.setIncludingFrame(frameOrientation, notifyListeners);
    }
 
    public void setPosition(double x, double y, double z)

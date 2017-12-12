@@ -32,27 +32,13 @@ public class YoFrameSO3Waypoint extends YoFrameWaypoint<YoFrameSO3Waypoint, Fram
    public static YoFrameQuaternion createYoOrientation(final ReferenceFrameHolder referenceFrameHolder, String namePrefix, String nameSuffix,
          YoVariableRegistry registry)
    {
-      return new YoFrameQuaternion(createName(namePrefix, "orientation", ""), nameSuffix, null, registry)
-      {
-         @Override
-         public ReferenceFrame getReferenceFrame()
-         {
-            return referenceFrameHolder.getReferenceFrame();
-         }
-      };
+      return new YoFrameQuaternion(createName(namePrefix, "orientation", ""), nameSuffix, referenceFrameHolder.getReferenceFrame(), registry);
    }
 
    public static YoFrameVector createYoAngularVelocity(final ReferenceFrameHolder referenceFrameHolder, String namePrefix, String nameSuffix,
          YoVariableRegistry registry)
    {
-      return new YoFrameVector(createName(namePrefix, "angularVelocity", ""), nameSuffix, null, registry)
-      {
-         @Override
-         public ReferenceFrame getReferenceFrame()
-         {
-            return referenceFrameHolder.getReferenceFrame();
-         }
-      };
+      return new YoFrameVector(createName(namePrefix, "angularVelocity", ""), nameSuffix, referenceFrameHolder.getReferenceFrame(), registry);
    }
 
    @Override
@@ -113,7 +99,7 @@ public class YoFrameSO3Waypoint extends YoFrameWaypoint<YoFrameSO3Waypoint, Fram
    protected void putYoValuesIntoFrameWaypoint()
    {
       SO3Waypoint simpleWaypoint = frameWaypoint.getGeometryObject();
-      simpleWaypoint.set(orientation.getFrameOrientation().getQuaternion(), angularVelocity.getFrameTuple().getVector());
+      simpleWaypoint.set(orientation, angularVelocity.getFrameTuple().getVector());
    }
 
    @Override

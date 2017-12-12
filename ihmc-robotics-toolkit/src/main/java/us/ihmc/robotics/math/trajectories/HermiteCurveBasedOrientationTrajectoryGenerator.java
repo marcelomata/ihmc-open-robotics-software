@@ -177,7 +177,7 @@ public class HermiteCurveBasedOrientationTrajectoryGenerator extends Orientation
 
    public void setInitialOrientation(YoFrameQuaternion initialOrientation)
    {
-      initialOrientation.getFrameOrientationIncludingFrame(tempOrientation);
+      initialOrientation.get(tempOrientation);
       tempOrientation.changeFrame(trajectoryFrame);
       this.initialOrientation.set(tempOrientation);
    }
@@ -198,7 +198,7 @@ public class HermiteCurveBasedOrientationTrajectoryGenerator extends Orientation
 
    public void setFinalOrientation(YoFrameQuaternion finalOrientation)
    {
-      finalOrientation.getFrameOrientationIncludingFrame(tempOrientation);
+      finalOrientation.get(tempOrientation);
       tempOrientation.changeFrame(trajectoryFrame);
       this.finalOrientation.set(tempOrientation);
    }
@@ -321,8 +321,8 @@ public class HermiteCurveBasedOrientationTrajectoryGenerator extends Orientation
    {
       double TOverThree = trajectoryTime.getDoubleValue() / 3.0;
 
-      FrameQuaternion qa = initialOrientation.getFrameOrientation();
-      FrameQuaternion qb = finalOrientation.getFrameOrientation();
+      FrameQuaternion qa = new FrameQuaternion(initialOrientation);
+      FrameQuaternion qb = new FrameQuaternion(finalOrientation);
       initialAngularVelocity.get(wa);
       finalAngularVelocity.get(wb);
       qa.inverseTransform(wa);
@@ -460,7 +460,7 @@ public class HermiteCurveBasedOrientationTrajectoryGenerator extends Orientation
       updateBezierCoefficients(time);
 
       // Changing naming convention to make expressions smaller
-      QuaternionReadOnly q0 = initialOrientation.getFrameOrientation().getQuaternion();
+      QuaternionReadOnly q0 = initialOrientation;
       controlRotations[1].get(d1);
       controlRotations[2].get(d2);
       controlRotations[3].get(d3);
@@ -597,7 +597,7 @@ public class HermiteCurveBasedOrientationTrajectoryGenerator extends Orientation
    @Override
    public void getOrientation(FrameQuaternion orientationToPack)
    {
-      currentOrientation.getFrameOrientationIncludingFrame(orientationToPack);
+      currentOrientation.get(orientationToPack);
    }
 
    @Override

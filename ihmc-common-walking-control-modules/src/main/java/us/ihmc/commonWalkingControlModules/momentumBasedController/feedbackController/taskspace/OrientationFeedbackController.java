@@ -191,7 +191,7 @@ public class OrientationFeedbackController implements FeedbackControllerInterfac
       angularGainsFrame = command.getAngularGainsFrame();
       command.getIncludingFrame(desiredOrientation, desiredAngularVelocity, feedForwardAngularAcceleration);
 
-      yoDesiredOrientation.setAndMatchFrame(desiredOrientation);
+      yoDesiredOrientation.setIncludingFrame(desiredOrientation);
       yoDesiredRotationVector.setAsRotationVector(desiredOrientation);
 
       yoDesiredAngularVelocity.setAndMatchFrame(desiredAngularVelocity);
@@ -315,7 +315,7 @@ public class OrientationFeedbackController implements FeedbackControllerInterfac
       yoCurrentOrientation.set(currentOrientation);
       yoCurrentRotationVector.setAsRotationVector(yoCurrentOrientation);
 
-      yoDesiredOrientation.getFrameOrientationIncludingFrame(desiredOrientation);
+      yoDesiredOrientation.get(desiredOrientation);
       desiredOrientation.changeFrame(endEffectorFrame);
 
       desiredOrientation.normalizeAndLimitToPi();
@@ -402,8 +402,8 @@ public class OrientationFeedbackController implements FeedbackControllerInterfac
          return;
       }
 
-      yoErrorOrientationCumulated.getFrameOrientationIncludingFrame(errorOrientationCumulated);
-      errorOrientationCumulated.multiply(yoErrorOrientation.getFrameOrientation());
+      yoErrorOrientationCumulated.get(errorOrientationCumulated);
+      errorOrientationCumulated.multiply(yoErrorOrientation);
       yoErrorOrientationCumulated.set(errorOrientationCumulated);
       errorOrientationCumulated.normalizeAndLimitToPi();
 

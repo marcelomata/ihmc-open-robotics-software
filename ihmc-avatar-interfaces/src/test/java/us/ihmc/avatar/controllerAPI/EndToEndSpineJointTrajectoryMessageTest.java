@@ -631,8 +631,8 @@ public abstract class EndToEndSpineJointTrajectoryMessageTest implements MultiRo
 
          if (!currentDesiredOrientation.containsNaN() && !previousDesiredOrientation.containsNaN())
          {
-            Quaternion previous = previousDesiredOrientation.getQuaternionCopy();
-            Quaternion current = currentDesiredOrientation.getQuaternionCopy();
+            Quaternion previous = new Quaternion(previousDesiredOrientation);
+            Quaternion current = new Quaternion(currentDesiredOrientation);
             Vector4D derivative = new Vector4D();
             quaternionCalculus.computeQDotByFiniteDifferenceCentral(previous, current, controllerDT, derivative);
             Vector3D angularVelocity = new Vector3D();

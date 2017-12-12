@@ -147,7 +147,7 @@ public class WholeBodyInverseKinematicsBehavior extends AbstractBehavior
    public void setDesiredHandPose(RobotSide robotSide, FramePoint3D desiredHandPosition, FrameQuaternion desiredHandOrientation)
    {
       yoDesiredHandPositions.get(robotSide).setAndMatchFrame(desiredHandPosition);
-      yoDesiredHandOrientations.get(robotSide).setAndMatchFrame(desiredHandOrientation);
+      yoDesiredHandOrientations.get(robotSide).setIncludingFrame(desiredHandOrientation);
    }
 
    public void setHandLinearControlOnly(RobotSide robotSide)
@@ -164,13 +164,13 @@ public class WholeBodyInverseKinematicsBehavior extends AbstractBehavior
    public void holdCurrentChestOrientation()
    {
       FrameQuaternion currentChestOrientation = new FrameQuaternion(fullRobotModel.getChest().getBodyFixedFrame());
-      yoDesiredChestOrientation.setAndMatchFrame(currentChestOrientation);
+      yoDesiredChestOrientation.setIncludingFrame(currentChestOrientation);
       chestSelectionMatrix.setToAngularSelectionOnly();
    }
 
    public void setDesiredChestOrientation(FrameQuaternion desiredChestOrientation)
    {
-      yoDesiredChestOrientation.setAndMatchFrame(desiredChestOrientation);
+      yoDesiredChestOrientation.setIncludingFrame(desiredChestOrientation);
    }
 
    public void setChestAngularControl(boolean roll, boolean pitch, boolean yaw)
@@ -182,13 +182,13 @@ public class WholeBodyInverseKinematicsBehavior extends AbstractBehavior
    public void holdCurrentPelvisOrientation()
    {
       FrameQuaternion currentPelvisOrientation = new FrameQuaternion(fullRobotModel.getPelvis().getBodyFixedFrame());
-      yoDesiredPelvisOrientation.setAndMatchFrame(currentPelvisOrientation);
+      yoDesiredPelvisOrientation.setIncludingFrame(currentPelvisOrientation);
       pelvisSelectionMatrix.setToAngularSelectionOnly();
    }
 
    public void setDesiredPelvisOrientation(FrameQuaternion desiredPelvisOrientation)
    {
-      yoDesiredPelvisOrientation.setAndMatchFrame(desiredPelvisOrientation);
+      yoDesiredPelvisOrientation.setIncludingFrame(desiredPelvisOrientation);
    }
 
    public void setPelvisAngularControl(boolean roll, boolean pitch, boolean yaw)

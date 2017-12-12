@@ -22,7 +22,7 @@ public class YoFrameQuaternionControlFlowOutputPort extends ControlFlowOutputPor
    @Override
    public FrameQuaternion getData()
    {
-      yoFrameQuaternion.getFrameOrientationIncludingFrame(super.getData());
+      yoFrameQuaternion.get(super.getData());
 
       return super.getData();
    }

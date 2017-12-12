@@ -532,7 +532,7 @@ public class TaskspaceToJointspaceCalculator
       yoBaseParentJointFrameOrientationFiltered.update();
       yoBaseParentJointFramePositionFiltered.update();
 
-      yoBaseParentJointFrameOrientationFiltered.getFrameOrientationIncludingFrame(baseParentJointFrameOrientation);
+      yoBaseParentJointFrameOrientationFiltered.get(baseParentJointFrameOrientation);
       yoBaseParentJointFramePositionFiltered.getFrameTupleIncludingFrame(baseParentJointFramePosition);
 
       localBaseParentJointFrame.setPoseAndUpdate(baseParentJointFramePosition, baseParentJointFrameOrientation);

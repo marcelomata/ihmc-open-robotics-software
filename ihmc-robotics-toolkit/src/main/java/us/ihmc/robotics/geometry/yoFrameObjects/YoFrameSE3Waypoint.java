@@ -146,7 +146,7 @@ public class YoFrameSE3Waypoint extends YoFrameWaypoint<YoFrameSE3Waypoint, Fram
       SO3Waypoint so3Waypoint = simpleWaypoint.getSO3Waypoint();
 
       euclideanWaypoint.set(position.getFrameTuple().getPoint(), linearVelocity.getFrameTuple().getVector());
-      so3Waypoint.set(orientation.getFrameOrientation().getQuaternion(), angularVelocity.getFrameTuple().getVector());
+      so3Waypoint.set(orientation, angularVelocity.getFrameTuple().getVector());
    }
 
    @Override

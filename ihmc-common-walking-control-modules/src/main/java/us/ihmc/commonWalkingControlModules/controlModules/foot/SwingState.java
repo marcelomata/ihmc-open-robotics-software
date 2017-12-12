@@ -561,7 +561,7 @@ public class SwingState extends AbstractUnconstrainedState
       }
 
       yoDesiredSolePosition.setAndMatchFrame(desiredPosition);
-      yoDesiredSoleOrientation.setAndMatchFrame(desiredOrientation);
+      yoDesiredSoleOrientation.setIncludingFrame(desiredOrientation);
       yoDesiredSoleLinearVelocity.setAndMatchFrame(desiredLinearVelocity);
       yoDesiredSoleAngularVelocity.setAndMatchFrame(desiredAngularVelocity);
       currentTrajectoryWaypoint.set(swingTrajectory.getCurrentPositionWaypointIndex());

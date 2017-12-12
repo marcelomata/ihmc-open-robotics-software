@@ -53,7 +53,7 @@ public class ConstantOrientationTrajectoryGenerator implements OrientationTrajec
 
    public void getOrientation(FrameQuaternion orientationToPack)
    {
-      orientation.getFrameOrientationIncludingFrame(orientationToPack);
+      orientation.get(orientationToPack);
    }
 
    public void getAngularVelocity(FrameVector3D angularVelocityToPack)

@@ -193,7 +193,7 @@ public class VelocityConstrainedPoseTrajectoryGenerator implements PoseTrajector
          @Override
          protected void updateTransformToParent(RigidBodyTransform transformToParent)
          {
-            initialOrientation.getFrameOrientationIncludingFrame(localFrameOrientation);
+            initialOrientation.get(localFrameOrientation);
             localFrameOrientation.changeFrame(parentFrame);
             localRotation.set(localFrameOrientation);
             transformToParent.setRotationAndZeroTranslation(localRotation);
@@ -208,7 +208,7 @@ public class VelocityConstrainedPoseTrajectoryGenerator implements PoseTrajector
          @Override
          protected void updateTransformToParent(RigidBodyTransform transformToParent)
          {
-            initialOrientation.getFrameOrientationIncludingFrame(localFrameOrientation);
+            initialOrientation.get(localFrameOrientation);
             localFrameOrientation.changeFrame(parentFrame);
             localRotation.set(localFrameOrientation);
             transformToParent.setRotationAndZeroTranslation(localRotation);
@@ -223,7 +223,7 @@ public class VelocityConstrainedPoseTrajectoryGenerator implements PoseTrajector
          @Override
          protected void updateTransformToParent(RigidBodyTransform transformToParent)
          {
-            currentOrientation.getFrameOrientationIncludingFrame(localFrameOrientation);
+            currentOrientation.get(localFrameOrientation);
             localFrameOrientation.changeFrame(parentFrame);
             localRotation.set(localFrameOrientation);
             transformToParent.setRotationAndZeroTranslation(localRotation);
@@ -432,8 +432,8 @@ public class VelocityConstrainedPoseTrajectoryGenerator implements PoseTrajector
       zPolynomial.setQuintic(0.0, trajectoryTime.getDoubleValue(), initialPosition.getZ(), initialVelocity.getZ(), 0.0, finalPosition.getZ(),
             finalVelocity.getZ(), 0.0);
 
-      initialOrientation.getFrameOrientationIncludingFrame(copyOfInitialOrientation);
-      finalOrientation.getFrameOrientationIncludingFrame(copyOfFinalOrientation);
+      initialOrientation.get(copyOfInitialOrientation);
+      finalOrientation.get(copyOfFinalOrientation);
       initialAngularVelocity.getFrameTupleIncludingFrame(copyOfInitialAngularVelocity);
       finalAngularVelocity.getFrameTupleIncludingFrame(copyOfFinalAngularVelocity);
 
@@ -653,7 +653,7 @@ public class VelocityConstrainedPoseTrajectoryGenerator implements PoseTrajector
 
    public void getOrientation(FrameQuaternion orientationToPack)
    {
-      currentOrientation.getFrameOrientationIncludingFrame(orientationToPack);
+      currentOrientation.get(orientationToPack);
    }
 
    public void getAngularVelocity(FrameVector3D angularVelocityToPack)

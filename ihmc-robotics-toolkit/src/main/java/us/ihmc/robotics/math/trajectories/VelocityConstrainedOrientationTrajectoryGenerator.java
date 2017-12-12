@@ -177,7 +177,7 @@ public class VelocityConstrainedOrientationTrajectoryGenerator extends Orientati
 
    public void setInitialOrientation(YoFrameQuaternion initialOrientation)
    {
-      initialOrientation.getFrameOrientationIncludingFrame(tempOrientation);
+      initialOrientation.get(tempOrientation);
       tempOrientation.changeFrame(trajectoryFrame);
       this.initialOrientation.set(tempOrientation);
    }
@@ -198,7 +198,7 @@ public class VelocityConstrainedOrientationTrajectoryGenerator extends Orientati
 
    public void setFinalOrientation(YoFrameQuaternion finalOrientation)
    {
-      finalOrientation.getFrameOrientationIncludingFrame(tempOrientation);
+      finalOrientation.get(tempOrientation);
       tempOrientation.changeFrame(trajectoryFrame);
       this.finalOrientation.set(tempOrientation);
    }
@@ -401,12 +401,12 @@ public class VelocityConstrainedOrientationTrajectoryGenerator extends Orientati
 
    public void getInitialOrientationDrifted(FrameQuaternion initialOrientationDriftedToPack)
    {
-      initialOrientationDrifted.getFrameOrientationIncludingFrame(initialOrientationDriftedToPack);
+      initialOrientationDrifted.get(initialOrientationDriftedToPack);
    }
 
    public void getFinalOrientationDrifted(FrameQuaternion finalOrientationDriftedToPack)
    {
-      finalOrientationDrifted.getFrameOrientationIncludingFrame(finalOrientationDriftedToPack);
+      finalOrientationDrifted.get(finalOrientationDriftedToPack);
    }
 
    @Override
@@ -418,7 +418,7 @@ public class VelocityConstrainedOrientationTrajectoryGenerator extends Orientati
    @Override
    public void getOrientation(FrameQuaternion orientationToPack)
    {
-      currentOrientation.getFrameOrientationIncludingFrame(orientationToPack);
+      currentOrientation.get(orientationToPack);
    }
 
    @Override

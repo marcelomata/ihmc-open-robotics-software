@@ -15,6 +15,8 @@ import us.ihmc.euclid.referenceFrame.FramePoint3D;
 import us.ihmc.euclid.referenceFrame.FrameQuaternion;
 import us.ihmc.euclid.referenceFrame.FrameVector3D;
 import us.ihmc.euclid.referenceFrame.ReferenceFrame;
+import us.ihmc.euclid.referenceFrame.interfaces.FrameQuaternionReadOnly;
+import us.ihmc.euclid.referenceFrame.interfaces.FrameVector3DReadOnly;
 import us.ihmc.euclid.referenceFrame.tools.EuclidFrameRandomTools;
 import us.ihmc.euclid.transform.RigidBodyTransform;
 import us.ihmc.euclid.tuple3D.Point3D;
@@ -322,8 +324,8 @@ public class FrameSO3TrajectoryPointTest
       assertTrue(testedFrameSO3TrajectoryPoint.containsNaN());
    }
 
-   static void assertTrajectoryPointContainsExpectedData(ReferenceFrame expectedFrame, double expectedTime, FrameQuaternion expectedOrientation,
-         FrameVector3D expectedAngularVelocity, FrameSO3TrajectoryPoint testedFrameSO3TrajectoryPoint, double epsilon)
+   static void assertTrajectoryPointContainsExpectedData(ReferenceFrame expectedFrame, double expectedTime, FrameQuaternionReadOnly expectedOrientation,
+                                                         FrameVector3DReadOnly expectedAngularVelocity, FrameSO3TrajectoryPoint testedFrameSO3TrajectoryPoint, double epsilon)
    {
       assertTrue(expectedFrame == testedFrameSO3TrajectoryPoint.getReferenceFrame());
       assertEquals(expectedTime, testedFrameSO3TrajectoryPoint.getTime(), epsilon);

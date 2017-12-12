@@ -47,15 +47,16 @@ public class YoFrameQuaternionInMultipleFrames extends YoFrameQuaternion impleme
    public ReferenceFrame switchCurrentReferenceFrame(ReferenceFrame referenceFrame)
    {
       ReferenceFrame previousReferenceFrame = multipleFramesHelper.switchCurrentReferenceFrame(referenceFrame);
-      set(0.0, 0.0, 0.0);
+      setYawPitchRoll(0.0, 0.0, 0.0);
       return previousReferenceFrame;
    }
 
-   @Override
+   // TODO: much broken
+   /*@Override
    public ReferenceFrame getReferenceFrame()
    {
       return multipleFramesHelper.getCurrentReferenceFrame();
-   }
+   }*/
 
    @Override
    public boolean isReferenceFrameRegistered(ReferenceFrame referenceFrame)
@@ -95,15 +96,16 @@ public class YoFrameQuaternionInMultipleFrames extends YoFrameQuaternion impleme
    
    public String toStringForASingleReferenceFrame(ReferenceFrame referenceFrame)
    {
-      getFrameOrientationIncludingFrame(frameOrientation);
+      getIncludingFrame(frameOrientation);
       frameOrientation.changeFrame(referenceFrame);
       return frameOrientation.toString();
    }
 
-   @Override
+   // TODO: much broken
+   /*@Override
    public void setToNaN(ReferenceFrame desiredReferenceFrame)
    {
       setToNaN();
       multipleFramesHelper.switchCurrentReferenceFrame(desiredReferenceFrame);
-   }
+   }*/
 }
